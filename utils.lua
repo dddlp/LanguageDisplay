@@ -151,9 +151,13 @@ end
 
 LDU.getRealmId = function (fullName)
     if not fullName then
-		return nil
-	end
+        return nil
+    end
 
+    if canaccessvalue and not canaccessvalue(fullName) then
+        return nil
+    end
+	
 	local realmName
 
     if not string.find(fullName, "%-") then
@@ -170,7 +174,7 @@ LDU.getRealmId = function (fullName)
 end
 
 LDU.getRealmIdByRealmName = function (realmName)
-    if not realmName or realmName == "" then
+    if canaccessvalue and not canaccessvalue(realmName) then
         return nil
     end
 
